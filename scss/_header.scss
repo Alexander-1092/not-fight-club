@@ -18,6 +18,16 @@
                     }
                 }
             }
+            @media (max-width: 500px) {
+                .header__list {
+                    padding: 10px 0px;
+                    .header__item {
+                        .header__link {
+                            font-size: 1rem;
+                        }
+                    }
+                }
+            }
         }
     }
 }
