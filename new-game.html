@@ -29,6 +29,69 @@
             </nav>
         </div>
     </header>
+    <main class="main">
+        <div class="container">
+            <section class="field">
+                <div class="field__user">
+                    <div class="field__img-box">
+                        <span class="field__name-user field__name"></span>
+                        <img class="field__img field__img-user" src="#" alt="avatar">
+                        <input class="field__health field__user-health" type="range" value="150" min="0" max="150">
+                        <span class="field__health-counter field__health-counter-user">150/150</span>
+                    </div>
+                    <div class="field__fight-box">
+                        <div class="field___zone-attack">
+                            <span class="field__text">Зона атаки</span>
+                            <label class="field__label">Голова
+                                <input class="field__input" type="radio" name="">
+                            </label>
+                            <label class="field__label">Шея
+                                <input class="field__input" type="radio" name="">
+                            </label>
+                            <label class="field__label">Тело
+                                <input class="field__input" type="radio" name="">
+                            </label>
+                            <label class="field__label">Живут
+                                <input class="field__input" type="radio" name="">
+                            </label>
+                            <label class="field__label">Ноги
+                                <input class="field__input" type="radio" name="">
+                            </label>
+                        </div>
+                        <div class="field___zone-defence">
+                            <span class="field__text">Зона защиты</span>
+                            <label class="field__label">
+                                <input class="field__input" type="radio" name="">Голова
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input" type="radio" name="">Шея
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input" type="radio" name="">Тело
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input" type="radio" name="">Живут
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input" type="radio" name="">Ноги
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field__img-box">
+                        <span class="field__name-enemy field__name"></span>
+                        <img class="field__img field__img-enemy" src="#" alt="avatar">
+                        <input class="field__user-health field__health" type="range" value="150" min="0" max="150">
+                        <span class="field__health-counter field__health-counter-enemy">150/150</span>
+                    </div>
+                </div>
+                <p class="field__instructions">
+                    Укажите две области для атаки и одну для защиты
+                </p>
+                <button type="button" class="field__fight-btn">Бой</button>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="./js/newGame.js"></script>
 </body>
 
 </html>
