@@ -8,6 +8,8 @@
     .main {
         .container {
             .field {
+                border-bottom: 5px solid #ad3f0c7c;
+                padding-bottom: 15px;
                 .field__user {
                     display: flex;
                     justify-content: space-between;
@@ -61,36 +63,95 @@
                     }
                     .field__fight-box {
                         display: flex;
+                        align-items: center;
                         gap: 1.5625rem;
                         .field__instructions {
                             text-align: center;
                         }
-                        .field___zone-attack {
+                        .field___attack {
                             display: flex;
                             flex-direction: column;
                             align-items: end;
+                            gap: 1rem;
+
                             .field__text {
+                                font-size: 1.2rem;
+                                color: #fff;
+                                text-shadow:
+                                    2px 2px 0 #cc6d00,
+                                    // Тёмно-оранжевая тень
+                                    4px 4px 0 rgba(0, 0, 0, 0.2);
                             }
                             .field__label {
+                                display: flex;
+                                align-items: center;
+                                gap: 1rem;
+                                font-size: 1.2rem;
+                                color: #300202e8;
+                                font-weight: 700;
                                 cursor: pointer;
+                                text-shadow:
+                                    0 0 2px #ff8c00,
+                                    0 0 5px #ff4500,
+                                    0 0 10px rgba(255, 69, 0, 0.5);
+
                                 .field__input {
                                     cursor: pointer;
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                    background-color: #e7bca8dc;
+                                    border: 2px solid #c94f4fc0;
+                                    width: 1rem;
+                                    height: 1rem;
+                                    transition: all 0.3s ease;
+                                    &:checked {
+                                        width: 1rem;
+                                        height: 1rem;
+                                        background-color: #d42008d2;
+                                    }
+                                    &:hover {
+                                        border: 2px solid #7e0505c0;
+                                    }
                                 }
                             }
+                        }
+                        .field__separ {
+                            width: 5px;
+                            height: 100%;
+                            background-color: #ad3f0c7c;
                         }
                         .field___zone-defence {
                             display: flex;
                             flex-direction: column;
-                            .field__text {
-                            }
-                            .field__label {
-                                cursor: pointer;
-                                .field__input {
-                                    cursor: pointer;
-                                }
-                            }
+                            align-items: start;
                         }
                     }
+                }
+                .field__btn-fight {
+                    margin-top: 15px;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 2rem;
+                    color: #300202e8;
+                    font-weight: 700;
+                    cursor: pointer;
+                    text-shadow:
+                        0 0 2px #ff8c00,
+                        0 0 5px #ff4500,
+                        0 0 10px rgba(255, 69, 0, 0.5);
+                    transition: all 0.8s ease;
+                    &:hover {
+                        color: #ecbebee8;
+                        text-shadow:
+                            0 0 2px #ff8c00,
+                            0 0 5px #6d1600,
+                            0 0 10px rgba(83, 25, 4, 0.5);
+                    }
+                }
+                .field__instructions {
+                    color: #fff;
+                    text-align: right;
+                    font-size: 1.2rem;
                 }
             }
         }

@@ -40,40 +40,41 @@
                         <span class="field__health-counter field__health-counter-user">150/150</span>
                     </div>
                     <div class="field__fight-box">
-                        <div class="field___zone-attack">
+                        <div class="field___attack field___zone-attack">
                             <span class="field__text">Зона атаки</span>
                             <label class="field__label">Голова
-                                <input class="field__input" type="radio" name="">
+                                <input class="field__input" type="checkbox" name="">
                             </label>
                             <label class="field__label">Шея
-                                <input class="field__input" type="radio" name="">
+                                <input class="field__input" type="checkbox" name="">
                             </label>
                             <label class="field__label">Тело
-                                <input class="field__input" type="radio" name="">
+                                <input class="field__input" type="checkbox" name="">
                             </label>
                             <label class="field__label">Живут
-                                <input class="field__input" type="radio" name="">
+                                <input class="field__input" type="checkbox" name="">
                             </label>
                             <label class="field__label">Ноги
-                                <input class="field__input" type="radio" name="">
+                                <input class="field__input" type="checkbox" name="">
                             </label>
                         </div>
-                        <div class="field___zone-defence">
+                        <div class="field__separ"></div>
+                        <div class="field___zone-defence field___attack ">
                             <span class="field__text">Зона защиты</span>
                             <label class="field__label">
-                                <input class="field__input" type="radio" name="">Голова
+                                <input class="field__input" type="checkbox" name="">Голова
                             </label>
                             <label class="field__label">
-                                <input class="field__input" type="radio" name="">Шея
+                                <input class="field__input" type="checkbox" name="">Шея
                             </label>
                             <label class="field__label">
-                                <input class="field__input" type="radio" name="">Тело
+                                <input class="field__input" type="checkbox" name="">Тело
                             </label>
                             <label class="field__label">
-                                <input class="field__input" type="radio" name="">Живут
+                                <input class="field__input" type="checkbox" name="">Живут
                             </label>
                             <label class="field__label">
-                                <input class="field__input" type="radio" name="">Ноги
+                                <input class="field__input" type="checkbox" name="">Ноги
                             </label>
                         </div>
                     </div>
@@ -84,11 +85,12 @@
                         <span class="field__health-counter field__health-counter-enemy">150/150</span>
                     </div>
                 </div>
+                <div class="field__btn-fight">Бой</div>
                 <p class="field__instructions">
-                    Укажите две области для атаки и одну для защиты
+                    Выберите две области для атаки и одну для защиты
                 </p>
-                <button type="button" class="field__fight-btn">Бой</button>
             </section>
+
         </div>
     </main>
     <script type="module" src="./js/newGame.js"></script>
