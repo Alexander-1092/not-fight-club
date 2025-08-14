@@ -62,13 +62,17 @@ const getRandomEnemy = () => {
   fieldNameEnemy.textContent = enemy.name;
   fieldImgEnemy.src = enemy.avatar;
   fieldHealthCounterEnemy.textContent = `${enemy.health}/${enemy.health}`;
+  fieldHealthCounterEnemy.value = enemy.health;
 };
 getRandomEnemy();
 //
 
+let listZonaAttack = [];
+let zonaDefence;
+
 ///определяем выбранные зоны атаки
 const fieldInputAttack = document.querySelectorAll(".field__input-attack");
-let listZonaAttack = [];
+
 fieldInputAttack.forEach((zona) => {
   zona.addEventListener("click", (e) => {
     const elemBody = zona.closest("label").textContent.trim();
@@ -100,4 +104,14 @@ const blockElemInput = () => {
     });
   }
 };
+///
+
+///выбираем зону защиты
+const fieldInputDefence = document.querySelectorAll(".field__input-defence");
+
+fieldInputDefence.forEach((elem) => {
+  elem.addEventListener("change", () => {
+    zonaDefence = elem.closest("label").textContent.trim();
+  });
+});
 ///
