@@ -65,3 +65,39 @@ const getRandomEnemy = () => {
 };
 getRandomEnemy();
 //
+
+///определяем выбранные зоны атаки
+const fieldInputAttack = document.querySelectorAll(".field__input-attack");
+let listZonaAttack = [];
+fieldInputAttack.forEach((zona) => {
+  zona.addEventListener("click", (e) => {
+    const elemBody = zona.closest("label").textContent.trim();
+    if (listZonaAttack.includes(elemBody)) {
+      const indexElemBody = listZonaAttack.indexOf(elemBody);
+      listZonaAttack.splice(indexElemBody, 1);
+    }
+    if (zona.checked) {
+      listZonaAttack.push(elemBody);
+    }
+    blockElemInput();
+  });
+});
+///
+
+///блокируем инпуты если нажато больше двух
+const blockElemInput = () => {
+  if (listZonaAttack.length >= 2) {
+    fieldInputAttack.forEach((elem) => {
+      if (!elem.checked) {
+        elem.disabled = true;
+      }
+    });
+  } else {
+    fieldInputAttack.forEach((elem) => {
+      if (!elem.checked) {
+        elem.disabled = false;
+      }
+    });
+  }
+};
+///
