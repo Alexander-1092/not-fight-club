@@ -9,6 +9,7 @@ const enemy = {
     attack: 10,
     health: 150,
     crit: 1.5,
+    luck: 3,
     avatar: "./assets/img/pers/enemy/enemy1.jpg",
   },
   enemy2: {
@@ -16,6 +17,7 @@ const enemy = {
     attack: 15,
     health: 110,
     crit: 1.1,
+    luck: 3,
     avatar: "./assets/img/pers/enemy/enemy2.jpg",
   },
   enemy3: {
@@ -23,6 +25,7 @@ const enemy = {
     attack: 10,
     health: 130,
     crit: 2,
+    luck: 3,
     avatar: "./assets/img/pers/enemy/enemy3.jpg",
   },
   enemy4: {
@@ -30,6 +33,7 @@ const enemy = {
     attack: 20,
     health: 150,
     crit: 1.2,
+    luck: 3,
     avatar: "./assets/img/pers/enemy/enemy4.jpg",
   },
   enemy5: {
@@ -37,6 +41,7 @@ const enemy = {
     attack: 25,
     health: 100,
     crit: 1.5,
+    luck: 3,
     avatar: "./assets/img/pers/enemy/enemy5.jpg",
   },
 };

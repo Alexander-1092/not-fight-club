@@ -14,8 +14,11 @@ const persContainer = document.querySelector(".pers__container");
 const persCharter = {
   attack: 20,
   health: 100,
+  crit: 1.2,
+  luck: 3,
 };
 
+//отслеживаем какого персонажа выбрали
 persContainer.addEventListener("click", (e) => {
   persImg.forEach((elem) => {
     elem.classList.remove("pers__img_active");
@@ -25,7 +28,9 @@ persContainer.addEventListener("click", (e) => {
     }
   });
 });
+///
 
+///отслежтваем нажатие финальной кнопки для моздания персонажи и проверки
 persBtn.addEventListener("click", (e) => {
   if (persInput.value === "") {
     alert("Введите имя");
@@ -39,3 +44,20 @@ persBtn.addEventListener("click", (e) => {
   window.location.href = "./new-game.html";
   localStorage.setItem("user", JSON.stringify(persCharter));
 });
+///
+
+// Проверяем, есть ли объект в localStorage
+const hideBtn = () => {
+  if (localStorage.getItem("user") !== null) {
+    return;
+  } else {
+    menulink[1].style.pointerEvents = "none";
+    menulink[1].style.opacity = "0.5";
+  }
+};
+hideBtn();
+
+menulink[1].addEventListener("click", () => {
+  window.location.href = "./new-game.html";
+});
+///
