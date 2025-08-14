@@ -1,9 +1,8 @@
 const savedUser = localStorage.getItem("user");
 const user = JSON.parse(savedUser);
 const fieldNameUser = document.querySelector(".field__name-user");
-fieldNameUser.textContent = user.name;
 const fieldImgUser = document.querySelector(".field__img-user");
-const enemy = {
+const enemiesData = {
   enemy1: {
     name: "Калакула",
     attack: 10,
@@ -45,6 +44,24 @@ const enemy = {
     avatar: "./assets/img/pers/enemy/enemy5.jpg",
   },
 };
-
+//показываем имя юзера и его аватар
 fieldImgUser.src = user.avatar;
+fieldNameUser.textContent = user.name;
+
 const fieldImgEnemy = document.querySelector(".field__img-enemy");
+const fieldUserHealth = document.querySelector(".field__user-health");
+const fieldNameEnemy = document.querySelector(".field__name-enemy");
+const fieldHealthCounterEnemy = document.querySelector(
+  ".field__health-counter-enemy"
+);
+
+//показываем врага
+const getRandomEnemy = () => {
+  let randomNum = Math.floor(Math.random() * 5);
+  let enemy = enemiesData[Object.keys(enemiesData)[randomNum]];
+  fieldNameEnemy.textContent = enemy.name;
+  fieldImgEnemy.src = enemy.avatar;
+  fieldHealthCounterEnemy.textContent = `${enemy.health}/${enemy.health}`;
+};
+getRandomEnemy();
+//
