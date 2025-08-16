@@ -5,6 +5,7 @@ const fieldImgUser = document.querySelector(".field__img-user");
 
 let userAttack = user.attack;
 let userHealth = user.health;
+let userName = user.name;
 
 const enemiesData = {
   enemy1: {
@@ -57,6 +58,9 @@ const fieldUserHealth = document.querySelector(".field__user-health");
 const fieldNameEnemy = document.querySelector(".field__name-enemy");
 const fieldHealthCounterEnemy = document.querySelector(
   ".field__health-counter-enemy"
+);
+const fieldHealthCounterUser = document.querySelector(
+  ".field__health-counter-user"
 );
 const fieldEnemyHealth = document.querySelector(".field__enemy-health");
 
@@ -155,35 +159,70 @@ const chat = document.querySelector(".chat");
 
 fieldBtnFight.addEventListener("click", () => {
   if (listZonaAttackUser.includes(zonaDefenceEnemy)) {
-    creatElemChat(false);
+    creatElemChat(
+      false,
+      enemyName,
+      listZonaAttackUser,
+      userAttack,
+      zonaDefenceEnemy
+    );
     showAttack(false, "enemy");
   } else {
-    creatElemChat(true);
+    creatElemChat(
+      true,
+      enemyName,
+      listZonaAttackUser,
+      userAttack,
+      zonaDefenceEnemy
+    );
     showAttack(true, "enemy");
+  }
+  if (listZonaAttackEnemy.includes(zonaDefenceUser)) {
+    creatElemChat(
+      false,
+      userName,
+      listZonaAttackEnemy,
+      enemyAttack,
+      zonaDefenceUser
+    );
+  } else {
+    creatElemChat(
+      true,
+      userName,
+      listZonaAttackEnemy,
+      enemyAttack,
+      zonaDefenceUser
+    );
   }
 });
 
 ///создаём сообщения в чате
-const creatElemChat = (typeAttack) => {
+const creatElemChat = (
+  typeAttack,
+  Name,
+  listZonaAttack,
+  attack,
+  zonaDefence
+) => {
   if (typeAttack) {
     chat.insertAdjacentHTML(
       "beforeend",
-      `<p class="chat__text">${enemyName} получает удар в ${listZonaAttackUser[0]} - ${userAttack}</p>`
+      `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${attack}</p>`
     );
     chat.insertAdjacentHTML(
       "beforeend",
-      `<p class="chat__text">${enemyName} получает удар в ${listZonaAttackUser[1]} - ${userAttack}</p>`
+      `<p class="chat__text">${Name} получает удар в ${listZonaAttack[1]} - ${attack}</p>`
     );
   } else {
     chat.insertAdjacentHTML(
       "beforeend",
-      `<p class="chat__text">${enemyName} блокирует удар в ${zonaDefenceEnemy}</p>`
+      `<p class="chat__text">${Name} блокирует удар в ${zonaDefence}</p>`
     );
-    const indexElem = listZonaAttackUser.indexOf(zonaDefenceEnemy);
-    listZonaAttackUser.splice(indexElem, 1);
+    const indexElem = listZonaAttack.indexOf(zonaDefence);
+    listZonaAttack.splice(indexElem, 1);
     chat.insertAdjacentHTML(
       "beforeend",
-      `<p class="chat__text">${enemyName} получает удар в ${listZonaAttackUser[0]} - ${userAttack}</p>`
+      `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${attack}</p>`
     );
   }
 };
