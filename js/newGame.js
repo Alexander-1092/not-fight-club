@@ -194,6 +194,7 @@ fieldBtnFight.addEventListener("click", () => {
       zonaDefenceUser
     );
   }
+  randomZona();
 });
 
 ///создаём сообщения в чате
