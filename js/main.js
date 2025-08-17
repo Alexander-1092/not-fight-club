@@ -16,6 +16,8 @@ const persCharter = {
   health: 100,
   crit: 1.2,
   luck: 3,
+  win: 0,
+  lost: 0,
 };
 
 //отслеживаем какого персонажа выбрали

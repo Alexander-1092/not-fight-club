@@ -5,6 +5,7 @@ const fieldImgUser = document.querySelector(".field__img-user");
 
 let userAttack = user.attack;
 let userHealth = user.health;
+let newUserHealth = user.health;
 let userName = user.name;
 
 const enemiesData = {
@@ -96,6 +97,8 @@ let zonaDefenceUser;
 ///определяем выбранные зоны атаки
 const fieldInputAttack = document.querySelectorAll(".field__input-attack");
 
+const checkZonaUser = () => {};
+
 fieldInputAttack.forEach((zona) => {
   zona.addEventListener("click", (e) => {
     const elemBody = zona.closest("label").textContent.trim();
@@ -107,6 +110,7 @@ fieldInputAttack.forEach((zona) => {
       listZonaAttackUser.push(elemBody);
     }
     blockElemInput();
+    console.log(listZonaAttackUser);
   });
 });
 ///
@@ -158,6 +162,14 @@ const fieldBtnFight = document.querySelector(".field__btn-fight");
 const chat = document.querySelector(".chat");
 
 fieldBtnFight.addEventListener("click", () => {
+  if (listZonaAttackUser.length !== 2) {
+    alert("выберите две зоны атаки");
+    return;
+  }
+  if (!zonaDefenceUser) {
+    alert("Выберите зону защиты");
+    return;
+  }
   if (listZonaAttackUser.includes(zonaDefenceEnemy)) {
     creatElemChat(
       false,
@@ -185,6 +197,7 @@ fieldBtnFight.addEventListener("click", () => {
       enemyAttack,
       zonaDefenceUser
     );
+    showAttack(false, "user");
   } else {
     creatElemChat(
       true,
@@ -193,6 +206,7 @@ fieldBtnFight.addEventListener("click", () => {
       enemyAttack,
       zonaDefenceUser
     );
+    showAttack(true, "user");
   }
   randomZona();
 });
@@ -234,9 +248,43 @@ const showAttack = (param, player) => {
   if (player === "enemy") {
     param ? (newEnemyHealth -= userAttack * 2) : (newEnemyHealth -= userAttack);
     fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
-    fieldHealthCounterEnemy.value = enemyHealth;
     const pricent = ((newEnemyHealth / enemyHealth) * 100).toFixed(2);
     fieldEnemyHealth.style.setProperty("--progress", `${pricent}%`);
+  } else if (player === "user") {
+    param ? (newUserHealth -= enemyAttack * 2) : (newUserHealth -= enemyAttack);
+    fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
+    const pricent = ((newUserHealth / userHealth) * 100).toFixed(2);
+    fieldUserHealth.style.setProperty("--progress", `${pricent}%`);
+    showWinDefeat();
+    resetZeroInputUser();
   }
+};
+///
+///проигрыш и выйигришь
+const showWinDefeat = () => {
+  if (newUserHealth <= 0) {
+    user.lost = user.lost + 1;
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Вы проиграли");
+    // window.location.href = "./person.html";
+  } else if (newEnemyHealth <= 0) {
+    user.win = user.win + 1;
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Вы победили");
+    // window.location.href = "./person.html";
+  }
+};
+///
+
+///снимаем активные инпуты
+const resetZeroInputUser = () => {
+  listZonaAttackUser = [];
+  fieldInputAttack.forEach((elem) => {
+    elem.checked = false;
+    elem.disabled = false;
+  });
+  fieldInputDefence.forEach((elem) => {
+    elem.checked = false;
+  });
 };
 ///
