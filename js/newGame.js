@@ -7,6 +7,9 @@ let userAttack = user.attack;
 let userHealth = user.health;
 let newUserHealth = user.health;
 let userName = user.name;
+let userLuck = user.luck;
+let userCrit = user.crit;
+let userCritHit = 1;
 
 const enemiesData = {
   enemy1: {
@@ -69,6 +72,9 @@ let enemyName;
 let enemyHealth;
 let enemyAttack;
 let newEnemyHealth;
+let enemyCrit;
+let enemyLuck;
+let enemyHitCrit = 1;
 //показываем врага
 const getRandomEnemy = () => {
   let randomNum = Math.floor(Math.random() * 5);
@@ -82,6 +88,8 @@ const redefineParam = (enemy) => {
   enemyHealth = enemy.health;
   newEnemyHealth = enemy.health;
   enemyAttack = enemy.attack;
+  enemyCrit = enemy.crit;
+  enemy.luck = enemy.luck;
 
   fieldNameEnemy.textContent = enemyName;
   fieldImgEnemy.src = enemy.avatar;
@@ -110,7 +118,6 @@ fieldInputAttack.forEach((zona) => {
       listZonaAttackUser.push(elemBody);
     }
     blockElemInput();
-    console.log(listZonaAttackUser);
   });
 });
 ///
@@ -161,105 +168,131 @@ randomZona();
 const fieldBtnFight = document.querySelector(".field__btn-fight");
 const chat = document.querySelector(".chat");
 
+const randomLuckUser = () => {
+  const arrUser = [...Array(userLuck).keys()];
+  let random = Math.floor(Math.random() * 9);
+  if (arrUser.includes(random)) {
+    userCritHit = userCrit;
+  }
+};
+
+const randomLuckEnemy = () => {
+  const arrEnemmy = [...Array(enemyLuck).keys()];
+  let random = Math.floor(Math.random() * 9);
+  if (arrEnemmy.includes(random)) {
+    enemyHitCrit = enemyCrit;
+  }
+};
+
 fieldBtnFight.addEventListener("click", () => {
+  randomLuckUser();
+  randomLuckEnemy();
   if (listZonaAttackUser.length !== 2) {
-    alert("выберите две зоны атаки");
+    alert("выберите две зоны защиты");
     return;
   }
   if (!zonaDefenceUser) {
-    alert("Выберите зону защиты");
+    alert("Выберите зону атаки");
     return;
   }
   if (listZonaAttackUser.includes(zonaDefenceEnemy)) {
-    creatElemChat(
-      false,
-      enemyName,
-      listZonaAttackUser,
-      userAttack,
-      zonaDefenceEnemy
-    );
-    showAttack(false, "enemy");
+    showAttack(true, "user");
   } else {
-    creatElemChat(
-      true,
-      enemyName,
-      listZonaAttackUser,
-      userAttack,
-      zonaDefenceEnemy
-    );
-    showAttack(true, "enemy");
+    showAttack(false, "user");
   }
   if (listZonaAttackEnemy.includes(zonaDefenceUser)) {
-    creatElemChat(
-      false,
-      userName,
-      listZonaAttackEnemy,
-      enemyAttack,
-      zonaDefenceUser
-    );
-    showAttack(false, "user");
+    showAttack(true, "enemy");
   } else {
-    creatElemChat(
-      true,
-      userName,
-      listZonaAttackEnemy,
-      enemyAttack,
-      zonaDefenceUser
-    );
-    showAttack(true, "user");
+    showAttack(false, "enemy");
   }
   randomZona();
 });
 
 ///создаём сообщения в чате
-const creatElemChat = (
-  typeAttack,
-  Name,
-  listZonaAttack,
-  attack,
-  zonaDefence
-) => {
-  if (typeAttack) {
-    chat.insertAdjacentHTML(
-      "beforeend",
-      `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${attack}</p>`
-    );
-    chat.insertAdjacentHTML(
-      "beforeend",
-      `<p class="chat__text">${Name} получает удар в ${listZonaAttack[1]} - ${attack}</p>`
-    );
-  } else {
-    chat.insertAdjacentHTML(
-      "beforeend",
-      `<p class="chat__text">${Name} блокирует удар в ${zonaDefence}</p>`
-    );
-    const indexElem = listZonaAttack.indexOf(zonaDefence);
-    listZonaAttack.splice(indexElem, 1);
-    chat.insertAdjacentHTML(
-      "beforeend",
-      `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${attack}</p>`
-    );
+// const creatElemChat = (
+//   typeAttack,
+//   Name,
+//   listZonaAttack,
+//   attack,
+//   crit,
+//   zonaDefence
+// ) => {
+//   if (typeAttack) {
+//     chat.insertAdjacentHTML(
+//       "beforeend",
+//       `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${
+//         attack * crit
+//       }</p>`
+//     );
+//     chat.insertAdjacentHTML(
+//       "beforeend",
+//       `<p class="chat__text">${Name} получает удар в ${listZonaAttack[1]} - ${
+//         attack * crit
+//       }</p>`
+//     );
+//   } else {
+//     chat.insertAdjacentHTML(
+//       "beforeend",
+//       `<p class="chat__text">${Name} блокирует удар в ${zonaDefence}</p>`
+//     );
+//     const indexElem = listZonaAttack.indexOf(zonaDefence);
+//     listZonaAttack.splice(indexElem, 1);
+//     chat.insertAdjacentHTML(
+//       "beforeend",
+//       `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${
+//         attack * crit
+//       }</p>`
+//     );
+//   }
+// };
+///
+
+const attack = (player) => {
+  if (player === "user") {
+    newEnemyHealth -= userAttack * userCritHit;
+    fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
+    const pricent = ((newEnemyHealth / enemyHealth) * 100).toFixed(2);
+    fieldEnemyHealth.style.setProperty("--progress", `${pricent}%`);
+  } else if (player === "enemy") {
+    newUserHealth -= enemyAttack * enemyHitCrit;
+    fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
+    const pricent = ((newUserHealth / userHealth) * 100).toFixed(2);
+    fieldUserHealth.style.setProperty("--progress", `${pricent}%`);
+  }
+};
+
+//совершаем атаку на врага
+const showAttack = (param, player) => {
+  if (player === "user") {
+    if (param) {
+      listZonaAttackUser.forEach((elem) => {
+        if (listZonaAttackUser.includes(elem)) {
+          // console.log("block enemy");
+        } else {
+          attack("user");
+        }
+      });
+    } else {
+      attack("user");
+    }
+    showWinDefeat();
+    resetZeroInputUser();
+  } else if (player === "enemy") {
+    if (param) {
+      listZonaAttackEnemy.forEach((elem) => {
+        if (listZonaAttackEnemy.includes(elem)) {
+          console.log("block");
+        } else {
+          attack("enemy");
+        }
+      });
+    } else {
+      attack("enemy");
+    }
   }
 };
 ///
 
-//совершаем атаку на врага
-const showAttack = (param, player) => {
-  if (player === "enemy") {
-    param ? (newEnemyHealth -= userAttack * 2) : (newEnemyHealth -= userAttack);
-    fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
-    const pricent = ((newEnemyHealth / enemyHealth) * 100).toFixed(2);
-    fieldEnemyHealth.style.setProperty("--progress", `${pricent}%`);
-  } else if (player === "user") {
-    param ? (newUserHealth -= enemyAttack * 2) : (newUserHealth -= enemyAttack);
-    fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
-    const pricent = ((newUserHealth / userHealth) * 100).toFixed(2);
-    fieldUserHealth.style.setProperty("--progress", `${pricent}%`);
-    showWinDefeat();
-    resetZeroInputUser();
-  }
-};
-///
 ///проигрыш и выйигришь
 const showWinDefeat = () => {
   if (newUserHealth <= 0) {
