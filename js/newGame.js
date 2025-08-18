@@ -89,7 +89,7 @@ const redefineParam = (enemy) => {
   newEnemyHealth = enemy.health;
   enemyAttack = enemy.attack;
   enemyCrit = enemy.crit;
-  enemy.luck = enemy.luck;
+  enemyLuck = enemy.luck;
 
   fieldNameEnemy.textContent = enemyName;
   fieldImgEnemy.src = enemy.avatar;
@@ -169,6 +169,7 @@ const fieldBtnFight = document.querySelector(".field__btn-fight");
 const chat = document.querySelector(".chat");
 
 const randomLuckUser = () => {
+  userCritHit = 1;
   const arrUser = [...Array(userLuck).keys()];
   let random = Math.floor(Math.random() * 9);
   if (arrUser.includes(random)) {
@@ -177,6 +178,7 @@ const randomLuckUser = () => {
 };
 
 const randomLuckEnemy = () => {
+  enemyHitCrit = 1;
   const arrEnemmy = [...Array(enemyLuck).keys()];
   let random = Math.floor(Math.random() * 9);
   if (arrEnemmy.includes(random)) {
@@ -195,12 +197,12 @@ fieldBtnFight.addEventListener("click", () => {
     alert("Выберите зону атаки");
     return;
   }
-  if (listZonaDefenceUser.includes(zonaAttackEnemy)) {
+  if (listZonaDefenceUser.includes(zonaAttackEnemy) && enemyHitCrit === 1) {
     showAttack(true, "user");
   } else {
     showAttack(false, "user");
   }
-  if (listZonaDefenceEnemy.includes(zonaAttackUser)) {
+  if (listZonaDefenceEnemy.includes(zonaAttackUser) && userCritHit === 1) {
     showAttack(true, "enemy");
   } else {
     showAttack(false, "enemy");
@@ -215,16 +217,26 @@ const creatElemChat = (attackBlock, zonaAttack, name, attack, crit) => {
       `<p class="chat__text">${name}, блокирует удар в ${zonaAttack}</p>`
     );
   } else if (attackBlock === "attack") {
-    chat.insertAdjacentHTML(
-      "beforeend",
-      `<p class="chat__text">${name}, наносит удар в ${zonaAttack} -${
-        attack * crit
-      } здоровья</p>`
-    );
+    if (crit > 1) {
+      chat.insertAdjacentHTML(
+        "beforeend",
+        `<p class="chat__text">${name}, наносит критический удар в ${zonaAttack} -${
+          attack * crit
+        } здоровья</p>`
+      );
+    } else {
+      chat.insertAdjacentHTML(
+        "beforeend",
+        `<p class="chat__text">${name}, наносит удар в ${zonaAttack} -${
+          attack * crit
+        } здоровья</p>`
+      );
+    }
   }
 };
 
 const attack = (player) => {
+  console.log(enemyHitCrit);
   if (player === "user") {
     newEnemyHealth -= userAttack * userCritHit;
     fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
