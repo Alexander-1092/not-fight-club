@@ -99,8 +99,8 @@ const redefineParam = (enemy) => {
 
 getRandomEnemy();
 
-let listZonaAttackUser = [];
-let zonaDefenceUser;
+let listZonaDefenceUser = [];
+let zonaAttackUser;
 
 ///определяем выбранные зоны атаки
 const fieldInputAttack = document.querySelectorAll(".field__input-attack");
@@ -110,12 +110,12 @@ const checkZonaUser = () => {};
 fieldInputAttack.forEach((zona) => {
   zona.addEventListener("click", (e) => {
     const elemBody = zona.closest("label").textContent.trim();
-    if (listZonaAttackUser.includes(elemBody)) {
-      const indexElemBody = listZonaAttackUser.indexOf(elemBody);
-      listZonaAttackUser.splice(indexElemBody, 1);
+    if (listZonaDefenceUser.includes(elemBody)) {
+      const indexElemBody = listZonaDefenceUser.indexOf(elemBody);
+      listZonaDefenceUser.splice(indexElemBody, 1);
     }
     if (zona.checked) {
-      listZonaAttackUser.push(elemBody);
+      listZonaDefenceUser.push(elemBody);
     }
     blockElemInput();
   });
@@ -124,7 +124,7 @@ fieldInputAttack.forEach((zona) => {
 
 ///блокируем инпуты если нажато больше двух
 const blockElemInput = () => {
-  if (listZonaAttackUser.length >= 2) {
+  if (listZonaDefenceUser.length >= 2) {
     fieldInputAttack.forEach((elem) => {
       if (!elem.checked) {
         elem.disabled = true;
@@ -145,23 +145,23 @@ const fieldInputDefence = document.querySelectorAll(".field__input-defence");
 
 fieldInputDefence.forEach((elem) => {
   elem.addEventListener("change", () => {
-    zonaDefenceUser = elem.closest("label").textContent.trim();
+    zonaAttackUser = elem.closest("label").textContent.trim();
   });
 });
 ///
 
 const listZonaBody = ["Голова", "Шея", "Тело", "Живот", "Ноги"];
-let listZonaAttackEnemy = [];
-let zonaDefenceEnemy;
+let listZonaDefenceEnemy = [];
+let zonaAttackEnemy;
 
 const randomZona = () => {
-  while (listZonaAttackEnemy.length < 2) {
+  while (listZonaDefenceEnemy.length < 2) {
     const random = listZonaBody[Math.floor(Math.random() * 5)];
-    if (!listZonaAttackEnemy.includes(random)) {
-      listZonaAttackEnemy.push(random);
+    if (!listZonaDefenceEnemy.includes(random)) {
+      listZonaDefenceEnemy.push(random);
     }
   }
-  zonaDefenceEnemy = listZonaBody[Math.floor(Math.random() * 5)];
+  zonaAttackEnemy = listZonaBody[Math.floor(Math.random() * 5)];
 };
 randomZona();
 
@@ -187,20 +187,20 @@ const randomLuckEnemy = () => {
 fieldBtnFight.addEventListener("click", () => {
   randomLuckUser();
   randomLuckEnemy();
-  if (listZonaAttackUser.length !== 2) {
+  if (listZonaDefenceUser.length !== 2) {
     alert("выберите две зоны защиты");
     return;
   }
-  if (!zonaDefenceUser) {
+  if (!zonaAttackUser) {
     alert("Выберите зону атаки");
     return;
   }
-  if (listZonaAttackUser.includes(zonaDefenceEnemy)) {
+  if (listZonaDefenceUser.includes(zonaAttackEnemy)) {
     showAttack(true, "user");
   } else {
     showAttack(false, "user");
   }
-  if (listZonaAttackEnemy.includes(zonaDefenceUser)) {
+  if (listZonaDefenceEnemy.includes(zonaAttackUser)) {
     showAttack(true, "enemy");
   } else {
     showAttack(false, "enemy");
@@ -208,44 +208,21 @@ fieldBtnFight.addEventListener("click", () => {
   randomZona();
 });
 
-///создаём сообщения в чате
-// const creatElemChat = (
-//   typeAttack,
-//   Name,
-//   listZonaAttack,
-//   attack,
-//   crit,
-//   zonaDefence
-// ) => {
-//   if (typeAttack) {
-//     chat.insertAdjacentHTML(
-//       "beforeend",
-//       `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${
-//         attack * crit
-//       }</p>`
-//     );
-//     chat.insertAdjacentHTML(
-//       "beforeend",
-//       `<p class="chat__text">${Name} получает удар в ${listZonaAttack[1]} - ${
-//         attack * crit
-//       }</p>`
-//     );
-//   } else {
-//     chat.insertAdjacentHTML(
-//       "beforeend",
-//       `<p class="chat__text">${Name} блокирует удар в ${zonaDefence}</p>`
-//     );
-//     const indexElem = listZonaAttack.indexOf(zonaDefence);
-//     listZonaAttack.splice(indexElem, 1);
-//     chat.insertAdjacentHTML(
-//       "beforeend",
-//       `<p class="chat__text">${Name} получает удар в ${listZonaAttack[0]} - ${
-//         attack * crit
-//       }</p>`
-//     );
-//   }
-// };
-///
+const creatElemChat = (attackBlock, zonaAttack, name, attack, crit) => {
+  if (attackBlock === "Defence") {
+    chat.insertAdjacentHTML(
+      "beforeend",
+      `<p class="chat__text">${name}, блокирует удар в ${zonaAttack}</p>`
+    );
+  } else if (attackBlock === "attack") {
+    chat.insertAdjacentHTML(
+      "beforeend",
+      `<p class="chat__text">${name}, наносит удар в ${zonaAttack} -${
+        attack * crit
+      } здоровья</p>`
+    );
+  }
+};
 
 const attack = (player) => {
   if (player === "user") {
@@ -265,28 +242,30 @@ const attack = (player) => {
 const showAttack = (param, player) => {
   if (player === "user") {
     if (param) {
-      listZonaAttackUser.forEach((elem) => {
-        if (listZonaAttackUser.includes(elem)) {
-          // console.log("block enemy");
-        } else {
-          attack("user");
-        }
-      });
+      creatElemChat("Defence", zonaAttackUser, enemyName);
     } else {
+      creatElemChat(
+        "attack",
+        zonaAttackUser,
+        userName,
+        userAttack,
+        userCritHit
+      );
       attack("user");
     }
     showWinDefeat();
     resetZeroInputUser();
   } else if (player === "enemy") {
     if (param) {
-      listZonaAttackEnemy.forEach((elem) => {
-        if (listZonaAttackEnemy.includes(elem)) {
-          console.log("block");
-        } else {
-          attack("enemy");
-        }
-      });
+      creatElemChat("Defence", zonaAttackEnemy, userName);
     } else {
+      creatElemChat(
+        "attack",
+        zonaAttackEnemy,
+        enemyName,
+        enemyAttack,
+        enemyHitCrit
+      );
       attack("enemy");
     }
   }
@@ -311,7 +290,7 @@ const showWinDefeat = () => {
 
 ///снимаем активные инпуты
 const resetZeroInputUser = () => {
-  listZonaAttackUser = [];
+  listZonaDefenceUser = [];
   fieldInputAttack.forEach((elem) => {
     elem.checked = false;
     elem.disabled = false;
