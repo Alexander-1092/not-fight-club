@@ -208,17 +208,30 @@
                 }
             }
             .chat {
-                height: 130px;
+                height: 150px;
                 overflow-y: auto;
                 .chat__text {
                     margin-top: 10px;
-                    font-size: 1.2rem;
+                    font-size: 1.5rem;
                     color: #fff;
                 }
-                .chat__text-enemy {
-                    margin-top: 10px;
-                    font-size: 1.2rem;
-                    color: #4bd896;
+                .chat__text-defence {
+                    font-weight: 700;
+                    color: #076cca;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                }
+                .chat__text-attack {
+                    font-weight: 700;
+                    color: #f01710;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                }
+                .chat__text-crit {
+                    font-weight: 700;
+                    color: #04744e;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                    span {
+                        text-transform: uppercase;
+                    }
                 }
                 &::-webkit-scrollbar {
                     width: 10px;

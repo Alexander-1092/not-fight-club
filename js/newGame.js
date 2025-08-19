@@ -210,24 +210,31 @@ fieldBtnFight.addEventListener("click", () => {
   randomZona();
 });
 
-const creatElemChat = (attackBlock, zonaAttack, name, attack, crit) => {
+const creatElemChat = (
+  attackBlock,
+  zonaAttack,
+  nameAct,
+  namePas,
+  attack,
+  crit
+) => {
   if (attackBlock === "Defence") {
     chat.insertAdjacentHTML(
       "beforeend",
-      `<p class="chat__text">${name}, блокирует удар в ${zonaAttack}</p>`
+      `<p class="chat__text chat__text-defence">${nameAct}, блокирует удар в ${zonaAttack} от ${namePas}</p>`
     );
   } else if (attackBlock === "attack") {
     if (crit > 1) {
       chat.insertAdjacentHTML(
         "beforeend",
-        `<p class="chat__text">${name}, наносит критический удар в ${zonaAttack} -${
+        `<p class="chat__text chat__text-crit">${nameAct}, наносит <span>критический удар</span> ${namePas} в ${zonaAttack} -${
           attack * crit
         } здоровья</p>`
       );
     } else {
       chat.insertAdjacentHTML(
         "beforeend",
-        `<p class="chat__text">${name}, наносит удар в ${zonaAttack} -${
+        `<p class="chat__text chat__text-attack">${nameAct}, наносит удар ${namePas} в ${zonaAttack} -${
           attack * crit
         } здоровья</p>`
       );
@@ -236,7 +243,6 @@ const creatElemChat = (attackBlock, zonaAttack, name, attack, crit) => {
 };
 
 const attack = (player) => {
-  console.log(enemyHitCrit);
   if (player === "user") {
     newEnemyHealth -= userAttack * userCritHit;
     fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
@@ -254,12 +260,13 @@ const attack = (player) => {
 const showAttack = (param, player) => {
   if (player === "user") {
     if (param) {
-      creatElemChat("Defence", zonaAttackUser, enemyName);
+      creatElemChat("Defence", zonaAttackUser, enemyName, userName);
     } else {
       creatElemChat(
         "attack",
         zonaAttackUser,
         userName,
+        enemyName,
         userAttack,
         userCritHit
       );
@@ -269,12 +276,13 @@ const showAttack = (param, player) => {
     resetZeroInputUser();
   } else if (player === "enemy") {
     if (param) {
-      creatElemChat("Defence", zonaAttackEnemy, userName);
+      creatElemChat("Defence", zonaAttackEnemy, userName, enemyName);
     } else {
       creatElemChat(
         "attack",
         zonaAttackEnemy,
         enemyName,
+        userName,
         enemyAttack,
         enemyHitCrit
       );
@@ -290,12 +298,12 @@ const showWinDefeat = () => {
     user.lost = user.lost + 1;
     localStorage.setItem("user", JSON.stringify(user));
     alert("Вы проиграли");
-    // window.location.href = "./person.html";
+    window.location.href = "./person.html";
   } else if (newEnemyHealth <= 0) {
     user.win = user.win + 1;
     localStorage.setItem("user", JSON.stringify(user));
     alert("Вы победили");
-    // window.location.href = "./person.html";
+    window.location.href = "./person.html";
   }
 };
 ///
