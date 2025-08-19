@@ -5,10 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Персонаж</title>
+    <link rel="stylesheet" href="./css/main.min.css">
 </head>
 
-<body>
-
+<body class="body__person">
+    <div class="wrapper">
+        <header class="header">
+            <div class="container">
+                <nav class="header__nav">
+                    <ul class="header__list">
+                        <li class="header__item">
+                            <a href="./index.html" class="header__link">Меню</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="./new-game.html" class="header__link">Бой</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#" class="header__link">Настройки</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="#" class="header__link">Звук</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+                <section class="person">
+                    <div class="person__avatar">
+                        <img class="person__img" src="#" alt="avatar">
+                    </div>
+                    <div class="person__charter">
+                        <div class="person__skills">
+                            <ul class="person__list-skills">
+                                <li class="person__item-skills">Имя</li>
+                                <li class="person__item-skills">Здоровье</li>
+                                <li class="person__item-skills">Атака</li>
+                                <li class="person__item-skills">Удача</li>
+                                <li class="person__item-skills">Крит</li>
+                                <li class="person__item-skills">Победы</li>
+                                <li class="person__item-skills">Поражения</li>
+                            </ul>
+                            <ul class="person-list-skills-data">
+                                <li class="person-item-skills-data"></li>
+                                <li class="person-item-skills-data"></li>
+                                <li class="person-item-skills-data"></li>
+                                <li class="person-item-skills-data"></li>
+                                <li class="person-item-skills-data"></li>
+                                <li class="person-item-skills-data"></li>
+                                <li class="person-item-skills-data"></li>
+                            </ul>
+                            <ul class="person__list-calk">
+                                <li class="person__calc-item">
+                                    Балл
+                                </li>
+                                <li class="person__calc-item">
+                                    <input class="person__input" type="number" min="0" value="0">
+                                </li>
+                                <li class="person__calc-item">
+                                    <input class="person__input" type="number" min="0" value="0">
+                                </li>
+                                <li class="person__calc-item">
+                                    <input class="person__input" type="number" step="0.5" min="0" value="0">
+                                </li>
+                                <li class="person__calc-item">
+                                    <input class="person__input" type="number" step="0.5" min="0" value="0">
+                                </li>
+                            </ul>
+                        </div>
+                        <span class="person__ball">Свободные баллы: 0</span>
+                        <button type="button" class="person__btn">Применить</button>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="container"></div>
+        </footer>
+    </div>
+    <script type="module" src="./js/person.js"></script>
 </body>
 
 </html>
