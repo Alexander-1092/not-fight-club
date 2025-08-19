@@ -1,0 +1,279 @@
+.body-new-game {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url(../assets/img/war.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    .main {
+        .container {
+            .field {
+                border-bottom: 5px solid #ad3f0c7c;
+                padding-bottom: 15px;
+                .field__user {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 0.9375rem;
+                    .field__img-box {
+                        max-width: 200px;
+                        max-height: 450px;
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        overflow: hidden;
+                        .field__name {
+                            display: flex;
+                            justify-content: center;
+                            margin-bottom: 15px;
+                            font-size: 1.5rem;
+                            color: #fff;
+                        }
+                        @media (max-width: 500px) {
+                            .field__name {
+                                font-size: 1rem;
+                            }
+                        }
+                        .field__img {
+                            width: 100%;
+                            min-width: 5rem;
+                            height: 352px;
+                            margin-bottom: 10px;
+                            object-fit: cover;
+                            object-position: center;
+                        }
+                        @media (max-width: 750px) {
+                            .field__img {
+                                height: 300px;
+                            }
+                        }
+                        @media (max-width: 600px) {
+                            .field__img {
+                                height: 200px;
+                            }
+                        }
+                        @media (max-width: 500px) {
+                            .field__img {
+                                height: 150px;
+                            }
+                        }
+                        .field__health-counter {
+                            width: 100%;
+                            display: block;
+                            text-align: center;
+                            color: #fff;
+                        }
+                        .field__health {
+                            width: 100%;
+                            height: 20px;
+                            background: transparent;
+                            border: 1px solid #ff0303;
+                            --progress: 100%;
+                            -webkit-appearance: none;
+                            -moz-appearance: none;
+                            appearance: none;
+                            pointer-events: none;
+                            &::-webkit-slider-thumb {
+                                -webkit-appearance: none;
+                                width: 0px;
+                                height: 0px;
+                                background: transparent;
+                            }
+                            &::-webkit-slider-runnable-track {
+                                height: 100%;
+                                background: linear-gradient(to right, #710707 var(--progress), #c03309 var(--progress));
+                            }
+                        }
+                    }
+                    .field__fight-box {
+                        display: flex;
+                        align-items: center;
+                        gap: 1.5625rem;
+                        .field__instructions {
+                            text-align: center;
+                        }
+                        .field___attack {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: end;
+                            gap: 1rem;
+
+                            .field__text {
+                                font-size: 1.2rem;
+                                color: #fff;
+                                text-shadow:
+                                    2px 2px 0 #cc6d00,
+                                    // Тёмно-оранжевая тень
+                                    4px 4px 0 rgba(0, 0, 0, 0.2);
+                            }
+                            @media (max-width: 500px) {
+                                .field__text {
+                                    font-size: 0.8rem;
+                                }
+                            }
+                            .field__label {
+                                display: flex;
+                                align-items: center;
+                                gap: 1rem;
+                                font-size: 1.2rem;
+                                color: #300202e8;
+                                font-weight: 700;
+                                cursor: pointer;
+                                text-shadow:
+                                    0 0 2px #ff8c00,
+                                    0 0 5px #ff4500,
+                                    0 0 10px rgba(255, 69, 0, 0.5);
+
+                                .field__input {
+                                    cursor: pointer;
+                                    appearance: none;
+                                    -webkit-appearance: none;
+                                    background-color: #e7bca8dc;
+                                    border: 2px solid #c94f4fc0;
+                                    width: 1rem;
+                                    height: 1rem;
+                                    transition: all 0.3s ease;
+                                    &:checked {
+                                        width: 1rem;
+                                        height: 1rem;
+                                        background-color: #d42008d2;
+                                    }
+                                    &:hover {
+                                        border: 2px solid #7e0505c0;
+                                    }
+                                }
+                            }
+                            @media (max-width: 500px) {
+                                .field__label {
+                                    gap: 0.5rem;
+                                    font-size: 0.8rem;
+                                }
+                            }
+                            @media (max-width: 350px) {
+                                .field__label {
+                                    gap: 0.3rem;
+                                    font-size: 0.5rem;
+                                }
+                            }
+                        }
+                        .field__separ {
+                            width: 5px;
+                            height: 100%;
+                            background-color: #ad3f0c7c;
+                        }
+                        .field___zone-defence {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: start;
+                        }
+                    }
+                    @media (max-width: 500px) {
+                        .field__fight-box {
+                            gap: 0.5rem;
+                        }
+                    }
+                }
+                .field__btn-fight {
+                    margin-top: 15px;
+                    margin-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                    font-size: 2rem;
+                    color: #300202e8;
+                    font-weight: 700;
+                    cursor: pointer;
+                    text-shadow:
+                        0 0 2px #ff8c00,
+                        0 0 5px #ff4500,
+                        0 0 10px rgba(255, 69, 0, 0.5);
+                    transition: all 0.8s ease;
+                    &:hover {
+                        color: #ecbebee8;
+                        text-shadow:
+                            0 0 2px #ff8c00,
+                            0 0 5px #6d1600,
+                            0 0 10px rgba(83, 25, 4, 0.5);
+                    }
+                }
+                .field__instructions {
+                    color: #fff;
+                    text-align: right;
+                    font-size: 1.2rem;
+                }
+                @media (max-width: 500px) {
+                    .field__instructions {
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+            .chat {
+                height: 150px;
+                overflow-y: auto;
+                .chat__text {
+                    margin-top: 10px;
+                    font-size: 1.5rem;
+                    color: #fff;
+                }
+                .chat__text-defence {
+                    font-weight: 700;
+                    color: #076cca;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                }
+                .chat__text-attack {
+                    font-weight: 700;
+                    color: #f01710;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                }
+                .chat__text-crit {
+                    font-weight: 700;
+                    color: #04744e;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                    span {
+                        text-transform: uppercase;
+                    }
+                }
+                &::-webkit-scrollbar {
+                    width: 10px;
+                    height: 10px;
+                }
+                &::-webkit-scrollbar-track {
+                    background: #cc4506;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #642305;
+                    border-radius: 10px;
+                    border: 3px solid #f1f1f1;
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    background: #3a0101;
+                }
+            }
+            @media (max-width: 500px) {
+                .chat {
+                    height: 80px;
+                    overflow-y: auto;
+                    .chat__text {
+                        margin-top: 10px;
+                        font-size: 0.6rem;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 10px;
+                        height: 10px;
+                    }
+                    &::-webkit-scrollbar-track {
+                        background: #cc4506;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        background: #642305;
+                        border-radius: 10px;
+                        border: 3px solid #f1f1f1;
+                    }
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: #3a0101;
+                    }
+                }
+            }
+        }
+    }
+}

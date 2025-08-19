@@ -1,0 +1,120 @@
+.body__main {
+    min-height: 100vh;
+    background-image: url(../assets/img/main-menu.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .main {
+        position: relative;
+        filter: grayscale(75%);
+        .container {
+            .menu {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .menu__list {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 2rem;
+                    .menu__item {
+                        .menu__link {
+                            color: azure;
+                            font-size: 3.125rem;
+                            text-shadow:
+                                1px 1px 0 #181717,
+                                2px 2px 0 #131212,
+                                3px 3px 0 #1a1919;
+                            cursor: pointer;
+                            &:hover {
+                                color: rgba(58, 56, 56, 0.479);
+                            }
+                        }
+                    }
+                }
+            }
+            .menu__inactive {
+                display: none;
+            }
+            .pers {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                .pers__label {
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    font-size: 2rem;
+                    color: #fff;
+                    .pers__input {
+                        margin-top: 2rem;
+                        padding: 10px 10px;
+                        font-size: 2rem;
+                    }
+                }
+                .pers__avatar {
+                    margin-top: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    .pers__title {
+                        margin-bottom: 30px;
+                        text-align: center;
+                        font-size: 2rem;
+                        color: #fff;
+                    }
+                    .pers__container {
+                        margin-bottom: 30px;
+                        display: flex;
+                        justify-content: center;
+                        gap: 15px;
+                        .pers__img-item {
+                            width: 150px;
+                            .pers__img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                cursor: pointer;
+                                filter: brightness(0.5);
+                                transform: filter 0.5s ease;
+                                &:hover {
+                                    filter: brightness(1.2);
+                                }
+                            }
+                            .pers__img_active {
+                                filter: brightness(1.2);
+                            }
+                        }
+                    }
+                }
+                .pers__btn {
+                    padding: 10px 40px;
+                    background-color: #fff;
+                    border: 1px solid #131212;
+                    color: #000000;
+                    font-size: 1.5rem;
+                    border-radius: 20px;
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+                    transition:
+                        color,
+                        background-color 0.5s ease;
+                    &:hover {
+                        color: #fff;
+                        background-color: #363535e0;
+                        border: 1px solid #ffffff;
+                    }
+                }
+            }
+            .pers__active {
+                display: flex;
+            }
+        }
+    }
+}

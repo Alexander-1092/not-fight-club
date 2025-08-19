@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new game</title>
+    <link rel="stylesheet" href="./css/main.min.css">
+</head>
+
+<body class="body-new-game">
+    <header class="header">
+        <div class="container">
+            <nav class="header__nav">
+                <ul class="header__list">
+                    <li class="header__item">
+                        <a href="./index.html" class="header__link">Меню</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="./person.html" class="header__link">Персонаж</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="#" class="header__link">Настройки</a>
+                    </li>
+                    <li class="header__item">
+                        <a href="#" class="header__link">Звук</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <section class="field">
+                <div class="field__user">
+                    <div class="field__img-box">
+                        <span class="field__name-user field__name"></span>
+                        <img class="field__img  field__img-user" src="#" alt="avatar">
+                        <input class="field__health field__user-health" type="range" value="150" min="0" max="150">
+                        <span class="field__health-counter field__health-counter-user">150/150</span>
+                    </div>
+                    <div class="field__fight-box">
+                        <div class="field___attack field___zone-attack">
+                            <span class="field__text">Зона защиты</span>
+                            <label class="field__label">Голова
+                                <input class="field__input field__input-attack" type="checkbox" name="">
+                            </label>
+                            <label class="field__label">Шея
+                                <input class="field__input field__input-attack" type="checkbox" name="">
+                            </label>
+                            <label class="field__label">Тело
+                                <input class="field__input field__input-attack" type="checkbox" name="">
+                            </label>
+                            <label class="field__label">Живот
+                                <input class="field__input field__input-attack" type="checkbox" name="">
+                            </label>
+                            <label class="field__label">Ноги
+                                <input class="field__input field__input-attack" type="checkbox" name="">
+                            </label>
+                        </div>
+                        <div class="field__separ"></div>
+                        <div class="field___zone-defence field___attack ">
+                            <span class="field__text">Зона атаки</span>
+                            <label class="field__label">
+                                <input class="field__input field__input-defence" type="radio" name="zone-defence">Голова
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input field__input-defence" type="radio" name="zone-defence">Шея
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input field__input-defence" type="radio" name="zone-defence">Тело
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input field__input-defence" type="radio" name="zone-defence">Живот
+                            </label>
+                            <label class="field__label">
+                                <input class="field__input field__input-defence" type="radio" name="zone-defence">Ноги
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field__img-box">
+                        <span class="field__name-enemy field__name">Калакула</span>
+                        <img class="field__img field__img-enemy" src="./assets/img/pers/enemy/enemy1.jpg" alt="avatar">
+                        <input class="field__enemy-health field__health" type="range" value="150" min="0" max="150">
+                        <span class="field__health-counter field__health-counter-enemy">150/150</span>
+                    </div>
+                </div>
+                <div class="field__btn-fight">Бой</div>
+                <p class="field__instructions">
+                    Выберите одну область для атаки и две для защиты
+                </p>
+            </section>
+            <section class="chat">
+                <p class="chat__text"></p>
+            </section>
+
+        </div>
+    </main>
+    <script type="module" src="./js/newGame.js"></script>
+</body>
+
+</html>
