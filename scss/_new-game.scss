@@ -208,7 +208,7 @@
                 }
             }
             .chat {
-                height: 150px;
+                max-height: 200px;
                 overflow-y: auto;
                 .chat__text {
                     margin-top: 10px;
@@ -216,19 +216,32 @@
                     color: #fff;
                 }
                 .chat__text-defence {
-                    font-weight: 700;
-                    color: #076cca;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                    font-weight: 600;
+                    color: #74b1e9;
+                    text-shadow:
+                        0 0 2px #000,
+                        0 0 2px #000,
+                        0 0 2px #000,
+                        0 0 2px #000;
                 }
                 .chat__text-attack {
-                    font-weight: 700;
-                    color: #f01710;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                    font-weight: 600;
+                    color: #eb9a9a;
+                    text-shadow:
+                        0 0 2px #000,
+                        0 0 2px #000,
+                        0 0 2px #000,
+                        0 0 2px #000;
                 }
                 .chat__text-crit {
-                    font-weight: 700;
-                    color: #04744e;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+                    font-weight: 600;
+                    color: #24d35e;
+                    text-shadow:
+                        0 0 2px #000,
+                        0 0 2px #000,
+                        0 0 2px #000,
+                        0 0 2px #000;
+
                     span {
                         text-transform: uppercase;
                     }
