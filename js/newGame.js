@@ -173,7 +173,7 @@ const chat = document.querySelector(".chat");
 
 const randomLuckUser = () => {
   userCritHit = 1;
-  const arrUser = [...Array(userLuck).keys()];
+  const arrUser = [...Array(Math.round(userLuck)).keys()];
   let random = Math.floor(Math.random() * 9);
   if (arrUser.includes(random)) {
     userCritHit = userCrit;
@@ -230,16 +230,16 @@ const creatElemChat = (
     if (crit > 1) {
       chat.insertAdjacentHTML(
         "afterbegin",
-        `<p class="chat__text chat__text-crit">${nameAct}, наносит <span>критический удар</span> ${namePas} в ${zonaAttack} -${
+        `<p class="chat__text chat__text-crit">${nameAct}, наносит <span>критический удар</span> ${namePas} в ${zonaAttack} -${Math.round(
           attack * crit
-        } здоровья</p>`
+        )} здоровья</p>`
       );
     } else {
       chat.insertAdjacentHTML(
         "afterbegin",
-        `<p class="chat__text chat__text-attack">${nameAct}, наносит удар ${namePas} в ${zonaAttack} -${
+        `<p class="chat__text chat__text-attack">${nameAct}, наносит удар ${namePas} в ${zonaAttack} -${Math.round(
           attack * crit
-        } здоровья</p>`
+        )} здоровья</p>`
       );
     }
   }
@@ -247,12 +247,12 @@ const creatElemChat = (
 
 const attack = (player) => {
   if (player === "user") {
-    newEnemyHealth -= userAttack * userCritHit;
+    newEnemyHealth -= Math.round(userAttack * userCritHit);
     fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
     const pricent = ((newEnemyHealth / enemyHealth) * 100).toFixed(2);
     fieldEnemyHealth.style.setProperty("--progress", `${pricent}%`);
   } else if (player === "enemy") {
-    newUserHealth -= enemyAttack * enemyHitCrit;
+    newUserHealth -= Math.round(enemyAttack * enemyHitCrit);
     fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
     const pricent = ((newUserHealth / userHealth) * 100).toFixed(2);
     fieldUserHealth.style.setProperty("--progress", `${pricent}%`);
