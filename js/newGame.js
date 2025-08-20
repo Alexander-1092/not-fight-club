@@ -10,6 +10,7 @@ let userName = user.name;
 let userLuck = user.luck;
 let userCrit = user.crit;
 let userCritHit = 1;
+let userPoints = user.points;
 
 const enemiesData = {
   enemy1: {
@@ -66,6 +67,8 @@ const fieldHealthCounterEnemy = document.querySelector(
 const fieldHealthCounterUser = document.querySelector(
   ".field__health-counter-user"
 );
+
+fieldHealthCounterUser.textContent = `${userHealth}/${userHealth}`;
 const fieldEnemyHealth = document.querySelector(".field__enemy-health");
 
 let enemyName;
@@ -220,20 +223,20 @@ const creatElemChat = (
 ) => {
   if (attackBlock === "Defence") {
     chat.insertAdjacentHTML(
-      "beforeend",
+      "afterbegin",
       `<p class="chat__text chat__text-defence">${nameAct}, блокирует удар в ${zonaAttack} от ${namePas}</p>`
     );
   } else if (attackBlock === "attack") {
     if (crit > 1) {
       chat.insertAdjacentHTML(
-        "beforeend",
+        "afterbegin",
         `<p class="chat__text chat__text-crit">${nameAct}, наносит <span>критический удар</span> ${namePas} в ${zonaAttack} -${
           attack * crit
         } здоровья</p>`
       );
     } else {
       chat.insertAdjacentHTML(
-        "beforeend",
+        "afterbegin",
         `<p class="chat__text chat__text-attack">${nameAct}, наносит удар ${namePas} в ${zonaAttack} -${
           attack * crit
         } здоровья</p>`
@@ -253,6 +256,7 @@ const attack = (player) => {
     fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
     const pricent = ((newUserHealth / userHealth) * 100).toFixed(2);
     fieldUserHealth.style.setProperty("--progress", `${pricent}%`);
+    showWinDefeat();
   }
 };
 
@@ -272,7 +276,6 @@ const showAttack = (param, player) => {
       );
       attack("user");
     }
-    showWinDefeat();
     resetZeroInputUser();
   } else if (player === "enemy") {
     if (param) {
@@ -301,6 +304,7 @@ const showWinDefeat = () => {
     window.location.href = "./person.html";
   } else if (newEnemyHealth <= 0) {
     user.win = user.win + 1;
+    user.points = user.points + 1;
     localStorage.setItem("user", JSON.stringify(user));
     alert("Вы победили");
     window.location.href = "./person.html";

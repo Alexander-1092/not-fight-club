@@ -60,6 +60,9 @@
                                 width: 50px;
                                 background-color: transparent;
                             }
+                            .person__input_inactive {
+                                pointer-events: none;
+                            }
                         }
                     }
                 }
