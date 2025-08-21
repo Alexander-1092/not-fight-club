@@ -19,6 +19,9 @@ const persCharter = {
   win: 0,
   lost: 0,
   points: 0,
+  background: "./assets/img/war.jpg",
+  filterBrightness: 1,
+  filterContrast: 1,
 };
 
 //отслеживаем какого персонажа выбрали

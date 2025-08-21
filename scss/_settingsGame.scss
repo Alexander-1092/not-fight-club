@@ -4,6 +4,8 @@
     background-size: cover;
     background-position: center;
     filter: grayscale(30%);
+    filter: brightness(1);
+    filter: contrast(1);
     .main {
         color: #fff;
         font-size: 1.5rem;
@@ -29,6 +31,29 @@
                         input::placeholder {
                             color: #d0e7ee;
                             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.829);
+                        }
+                        @media (max-width: 1024px) {
+                            .setting__name-input {
+                                width: 75%;
+                                // font-size: 1.2rem;
+                            }
+                        }
+                        @media (max-width: 800px) {
+                            .setting__name-input {
+                                width: 50%;
+                                font-size: 1rem;
+                            }
+                        }
+                        @media (max-width: 700px) {
+                            .setting__name-input {
+                                width: 60%;
+                                font-size: 0.9rem;
+                            }
+                        }
+                        @media (max-width: 520px) {
+                            .setting__name-input {
+                                width: 30%;
+                            }
                         }
                     }
                 }
@@ -97,6 +122,10 @@
                 }
                 .setting__btn {
                     align-self: center;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                     width: 50%;
                     font-size: 1rem;
                     margin-bottom: 2.1875rem;

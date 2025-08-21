@@ -138,3 +138,7 @@ personBtn.addEventListener("click", () => {
     personBtn.style.pointerEvents = "none";
   }
 });
+
+const wrapper = document.querySelector(".wrapper");
+wrapper.style.filter = `brightness(${user.filterBrightness})`;
+wrapper.style.filter = `contrast(${user.filterContrast})`;
