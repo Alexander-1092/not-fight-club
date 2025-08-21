@@ -9,6 +9,73 @@
 </head>
 
 <body>
+    <div class="wrapper wrapper__settings">
+        <header class="header">
+            <div class="container">
+                <nav class="header__nav">
+                    <ul class="header__list">
+                        <li class="header__item">
+                            <a href="./index.html" class="header__link">Меню</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="./new-game.html" class="header__link">Бой</a>
+                        </li>
+                        <li class="header__item">
+                            <a href="./person.html" class="header__link">Персонаж</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main class="main">
+            <div class="container">
+                <section class="setting">
+                    <div class="setting__name-box">
+                        <label class="setting__name-label">Имя персонажа
+                            <input class="setting__name-input" type="text"
+                                placeholder="Alex, для смены имени введите новое имя">
+                        </label>
+                    </div>
+                    <div class="setting__brightness-box">
+                        <label class="setting__brightness-label">Яркость
+                            <input class="setting__brightness-input" type="range" value="50" min="0" max="100">
+                        </label>
+                    </div>
+                    <div class="setting__contrast-box">
+                        <label class="setting__contrast-label">Контраст
+                            <input class="setting__contrast-input" type="range" value="50" min="0" max="100">
+                        </label>
+                    </div>
+                    <div class="setting__background-box">
+                        <span class="setting__background-text">Сменить изображения поля боя</span>
+                        <div class="setting__img-container">
+                            <div class="setting__img-box">
+                                <img class="setting__background-img" src="./assets/img/0seet003.jpg" alt="pic">
+                            </div>
+                            <div class="setting__img-box">
+                                <img class="setting__background-img" src="./assets/img/main-menu.jpg" alt="pic">
+                            </div>
+                            <div class="setting__img-box">
+                                <img class="setting__background-img" src="./assets/img/person-back.jpg" alt="pic">
+                            </div>
+                            <div class="setting__img-box">
+                                <img class="setting__background-img" src="./assets/img/fgfgfg.jpg" alt="pic">
+                            </div>
+                            <div class="setting__img-box">
+                                <img class="setting__background-img" src="./assets/img/4a6b8.jpg" alt="pic">
+                            </div>
+                            <div class="setting__img-box">
+                                <img class="setting__background-img" src="./assets/img/war.jpg" alt="pic">
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="setting__btn">Применить</button>
+                </section>
+            </div>
+        </main>
+        <footer class="footer"></footer>
+    </div>
     <script src="./js/settingsGame.js"></script>
 </body>
 

@@ -301,7 +301,7 @@ const showWinDefeat = () => {
     user.lost = user.lost + 1;
     localStorage.setItem("user", JSON.stringify(user));
     alert("Вы проиграли");
-    window.location.href = "./person.html";
+    location.reload();
   } else if (newEnemyHealth <= 0) {
     user.win = user.win + 1;
     user.points = user.points + 1;
