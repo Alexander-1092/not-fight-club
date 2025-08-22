@@ -113,10 +113,14 @@
                             height: 100%;
                             object-fit: cover;
                             cursor: pointer;
+                            filter: brightness(0.5);
                             transition: all 0.5s ease;
                             &:hover {
                                 filter: brightness(1.2);
                             }
+                        }
+                        .setting__background-img_active {
+                            filter: brightness(1.2);
                         }
                     }
                 }

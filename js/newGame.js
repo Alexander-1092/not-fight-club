@@ -328,3 +328,4 @@ const resetZeroInputUser = () => {
 const bodyNewGame = document.querySelector(".body-new-game ");
 bodyNewGame.style.filter = `brightness(${user.filterBrightness})`;
 bodyNewGame.style.filter = `contrast(${user.filterContrast})`;
+bodyNewGame.style.backgroundImage = `url(${user.background})`;
