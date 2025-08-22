@@ -245,6 +245,35 @@ const creatElemChat = (
   }
 };
 
+const currentHelth = {
+  healthEnnemy: 0,
+  healthUser: 0,
+  newGame: false,
+};
+
+const getSetHealth = () => {
+  if (localStorage.getItem("continueGame") !== null) {
+    const saveHealth = localStorage.getItem("continueGame");
+    const healthObj = JSON.parse(saveHealth);
+    if (!healthObj.newGame) {
+      newEnemyHealth = healthObj.healthEnnemy;
+      newUserHealth = healthObj.healthUser;
+
+      const pricentEnnemy = ((newEnemyHealth / enemyHealth) * 100).toFixed(2);
+      fieldEnemyHealth.style.setProperty("--progress", `${pricentEnnemy}%`);
+      fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
+
+      const pricentUser = ((newUserHealth / userHealth) * 100).toFixed(2);
+      fieldUserHealth.style.setProperty("--progress", `${pricentUser}%`);
+      fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
+    }
+  } else {
+    console.log("Объект не найден");
+  }
+};
+
+getSetHealth();
+
 const attack = (player) => {
   if (player === "user") {
     newEnemyHealth -= Math.round(userAttack * userCritHit);
@@ -258,6 +287,9 @@ const attack = (player) => {
     fieldUserHealth.style.setProperty("--progress", `${pricent}%`);
     showWinDefeat();
   }
+  currentHelth.healthEnnemy = newEnemyHealth;
+  currentHelth.healthUser = newUserHealth;
+  localStorage.setItem("continueGame", JSON.stringify(currentHelth));
 };
 
 //совершаем атаку на врага
@@ -300,12 +332,14 @@ const showWinDefeat = () => {
   if (newUserHealth <= 0) {
     user.lost = user.lost + 1;
     localStorage.setItem("user", JSON.stringify(user));
+    currentHelth.newGame = true;
     alert("Вы проиграли");
     location.reload();
   } else if (newEnemyHealth <= 0) {
     user.win = user.win + 1;
     user.points = user.points + 1;
     localStorage.setItem("user", JSON.stringify(user));
+    currentHelth.newGame = true;
     alert("Вы победили");
     window.location.href = "./person.html";
   }

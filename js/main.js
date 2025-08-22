@@ -5,6 +5,7 @@ const persInput = document.querySelector(".pers__input");
 const persBtn = document.querySelector(".pers__btn");
 
 menulink[0].addEventListener("click", () => {
+  localStorage.clear();
   menu.classList.add("menu__inactive");
   pers.classList.add("pers__active");
 });
