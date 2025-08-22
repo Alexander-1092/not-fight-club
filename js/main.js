@@ -5,6 +5,7 @@ const persInput = document.querySelector(".pers__input");
 const persBtn = document.querySelector(".pers__btn");
 
 menulink[0].addEventListener("click", () => {
+  localStorage.clear();
   menu.classList.add("menu__inactive");
   pers.classList.add("pers__active");
 });
@@ -19,6 +20,9 @@ const persCharter = {
   win: 0,
   lost: 0,
   points: 0,
+  background: "./assets/img/war.jpg",
+  filterBrightness: 1,
+  filterContrast: 1,
 };
 
 //отслеживаем какого персонажа выбрали
