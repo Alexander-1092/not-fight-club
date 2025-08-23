@@ -78,6 +78,8 @@ let newEnemyHealth;
 let enemyCrit;
 let enemyLuck;
 let enemyHitCrit = 1;
+let ennemyAvatar;
+
 //показываем врага
 const getRandomEnemy = () => {
   let randomNum = Math.floor(Math.random() * 5);
@@ -93,7 +95,7 @@ const redefineParam = (enemy) => {
   enemyAttack = enemy.attack;
   enemyCrit = enemy.crit;
   enemyLuck = enemy.luck;
-
+  ennemyAvatar = enemy.avatar;
   fieldNameEnemy.textContent = enemyName;
   fieldImgEnemy.src = enemy.avatar;
   fieldHealthCounterEnemy.textContent = `${enemyHealth}/${enemyHealth}`;
@@ -249,6 +251,12 @@ const currentHelth = {
   healthEnnemy: 0,
   healthUser: 0,
   newGame: false,
+  enemyNum: 0,
+  nameEnnemy: enemyName,
+  attackEnnemy: enemyAttack,
+  critEnnemy: enemyCrit,
+  luckEnnemy: enemyLuck,
+  avatarEnnemy: ennemyAvatar,
 };
 
 const getSetHealth = () => {
@@ -259,6 +267,12 @@ const getSetHealth = () => {
       newEnemyHealth = healthObj.healthEnnemy;
       newUserHealth = healthObj.healthUser;
 
+      fieldNameEnemy.textContent = healthObj.nameEnnemy;
+      fieldImgEnemy.src = healthObj.avatarEnnemy;
+      enemyAttack = healthObj.attackEnnemy;
+      enemyCrit = healthObj.critEnnemy;
+      enemyLuck = healthObj.luckEnnemy;
+
       const pricentEnnemy = ((newEnemyHealth / enemyHealth) * 100).toFixed(2);
       fieldEnemyHealth.style.setProperty("--progress", `${pricentEnnemy}%`);
       fieldHealthCounterEnemy.textContent = `${newEnemyHealth}/${enemyHealth}`;
@@ -267,8 +281,6 @@ const getSetHealth = () => {
       fieldUserHealth.style.setProperty("--progress", `${pricentUser}%`);
       fieldHealthCounterUser.textContent = `${newUserHealth}/${userHealth}`;
     }
-  } else {
-    console.log("Объект не найден");
   }
 };
 
@@ -359,7 +371,9 @@ const resetZeroInputUser = () => {
 };
 ///
 
+///для смены яркости, контраста, фона
 const bodyNewGame = document.querySelector(".body-new-game ");
 bodyNewGame.style.filter = `brightness(${user.filterBrightness})`;
 bodyNewGame.style.filter = `contrast(${user.filterContrast})`;
 bodyNewGame.style.backgroundImage = `url(${user.background})`;
+////
