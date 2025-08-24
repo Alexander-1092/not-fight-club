@@ -23,6 +23,7 @@ const persCharter = {
   background: "./assets/img/war.jpg",
   filterBrightness: 1,
   filterContrast: 1,
+  sound: true,
 };
 
 //отслеживаем какого персонажа выбрали
