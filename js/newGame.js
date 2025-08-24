@@ -3,6 +3,12 @@ const user = JSON.parse(savedUser);
 const fieldNameUser = document.querySelector(".field__name-user");
 const fieldImgUser = document.querySelector(".field__img-user");
 
+const audioAttack = document.querySelector(".audio__attack");
+const audioBtnChose = document.querySelector(".audio__btn-chose");
+const audioLoose = document.querySelector(".audio__loose");
+const audioWin = document.querySelector(".audio__win");
+const audioBtnFocus = document.querySelector(".audio__btn-focus");
+
 let userAttack = user.attack;
 let userHealth = user.health;
 let newUserHealth = user.health;
@@ -11,6 +17,7 @@ let userLuck = user.luck;
 let userCrit = user.crit;
 let userCritHit = 1;
 let userPoints = user.points;
+let mainSound = user.sound;
 
 const enemiesData = {
   enemy1: {
@@ -114,6 +121,9 @@ const checkZonaUser = () => {};
 
 fieldInputAttack.forEach((zona) => {
   zona.addEventListener("click", (e) => {
+    if (mainSound) {
+      audioBtnChose.play();
+    }
     const elemBody = zona.closest("label").textContent.trim();
     if (listZonaDefenceUser.includes(elemBody)) {
       const indexElemBody = listZonaDefenceUser.indexOf(elemBody);
@@ -150,6 +160,10 @@ const fieldInputDefence = document.querySelectorAll(".field__input-defence");
 
 fieldInputDefence.forEach((elem) => {
   elem.addEventListener("change", () => {
+    if (mainSound) {
+      audioBtnChose.play();
+    }
+
     zonaAttackUser = elem.closest("label").textContent.trim();
   });
 });
@@ -212,6 +226,7 @@ fieldBtnFight.addEventListener("click", () => {
   } else {
     showAttack(false, "enemy");
   }
+  audioAttack.play();
   randomZona();
 });
 
@@ -345,6 +360,9 @@ const showWinDefeat = () => {
     user.lost = user.lost + 1;
     localStorage.setItem("user", JSON.stringify(user));
     currentHelth.newGame = true;
+    if (user.sound) {
+      audioLoose.play();
+    }
     alert("Вы проиграли");
     location.reload();
   } else if (newEnemyHealth <= 0) {
@@ -352,6 +370,10 @@ const showWinDefeat = () => {
     user.points = user.points + 1;
     localStorage.setItem("user", JSON.stringify(user));
     currentHelth.newGame = true;
+    if (user.sound) {
+      audioWin.play();
+      s;
+    }
     alert("Вы победили");
     window.location.href = "./person.html";
   }
@@ -377,3 +399,22 @@ bodyNewGame.style.filter = `brightness(${user.filterBrightness})`;
 bodyNewGame.style.filter = `contrast(${user.filterContrast})`;
 bodyNewGame.style.backgroundImage = `url(${user.background})`;
 ////
+
+const headerLink = document.querySelectorAll(".header__link");
+
+headerLink.forEach((elem) => {
+  elem.addEventListener("mouseover", () => {
+    audioBtnFocus.pause();
+    if (user.sound) {
+      audioBtnFocus.play();
+    }
+  });
+});
+headerLink.forEach((elem) => {
+  elem.addEventListener("mouseleave", () => {
+    if (user.sound) {
+      audioBtnFocus.pause();
+      audioBtnFocus.currentTime = 0;
+    }
+  });
+});
