@@ -85,6 +85,18 @@
                         }
                     }
                 }
+                .setting__sound-box {
+                    position: relative;
+                    .setting__sound-label {
+                        .setting__sound-input {
+                            position: absolute;
+                            top: 0;
+                            left: 50%;
+                            transform: translateX(-50%) scale(2);
+                            cursor: pointer;
+                        }
+                    }
+                }
                 .setting__background-box {
                     margin-top: 50px;
                     margin-bottom: 50px;

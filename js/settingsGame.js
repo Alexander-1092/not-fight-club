@@ -64,3 +64,20 @@ settingImgContainer.addEventListener("click", (event) => {
 });
 
 showActiveBackround();
+
+const settingSoundInput = document.querySelector(".setting__sound-input");
+
+const checkSoundInput = () => {
+  if (!user.sound) {
+    settingSoundInput.checked = false;
+  }
+};
+checkSoundInput();
+
+settingSoundInput.addEventListener("change", () => {
+  if (settingSoundInput.checked) {
+    user.sound = true;
+  } else {
+    user.sound = false;
+  }
+});
