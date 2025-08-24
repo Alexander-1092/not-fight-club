@@ -372,7 +372,6 @@ const showWinDefeat = () => {
     currentHelth.newGame = true;
     if (user.sound) {
       audioWin.play();
-      s;
     }
     alert("Вы победили");
     window.location.href = "./person.html";
